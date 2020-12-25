@@ -1,9 +1,9 @@
 import React,{useEffect, useState} from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addLog } from '../src/actions/logActions';
+import { addLog,getLogs } from '../src/actions/logActions';
 
-const Fetchdata = ({addLog}) =>{
+const Fetchdata = ({addLog,getLogs}) =>{
     let arr=['yoyo','Jumbo','Vango','Ginger','Rosco','Willow','Shaggy','Isaac','Artimus','Magnus','Feather','Kent','Spunk','Mint','Kalina','Shamu']
     const [info,setinfo] = useState('https://miro.medium.com/max/880/0*H3jZONKqRuAAeHnG.jpg');
     const [name, setname] = useState(' ');
@@ -33,7 +33,7 @@ const Fetchdata = ({addLog}) =>{
           setval(arr[x]) 
         })
         .catch(error => console.log(error));
-        
+
         const newLog = {
             dogimg,
             name,
@@ -44,6 +44,7 @@ const Fetchdata = ({addLog}) =>{
     useEffect(() => {
         setdogimg(info);
         setname(val);
+        getLogs()
     },[info,val])
    
 
@@ -56,9 +57,8 @@ const Fetchdata = ({addLog}) =>{
             </div>
              <h4>{name}</h4>
             <div className="row center">
-            <a href="/" onClick={onclick} style={{marginRight:'50px'}}><i class="far fa-thumbs-down fa-4x"></i></a>
-            <a href="/" onClick={onclick1} style={{marginLeft:'50px'}}><i class="far fa-thumbs-up fa-4x"></i></a>
-
+            <a onClick={onclick} style={{marginRight:'50px'}} class="pointer"><i class="far fa-thumbs-down fa-4x"></i></a>
+            <a onClick={onclick1} style={{marginLeft:'50px'}} class="pointer"><i class="far fa-thumbs-up fa-4x"></i></a>
             </div>
             </div>
         </div>
@@ -66,10 +66,11 @@ const Fetchdata = ({addLog}) =>{
 }
 
 Fetchdata.propTypes = {
-    addLog: PropTypes.func.isRequired
+    addLog: PropTypes.func.isRequired,
+    getLogs: PropTypes.func.isRequired
   };
   
   export default connect(
     null,
-    { addLog }
+    { addLog,getLogs }
   )(Fetchdata);

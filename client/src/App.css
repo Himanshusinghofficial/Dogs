@@ -16,6 +16,8 @@
     width: 250px;
     height: 250px;
   }
+
+  .pointer {cursor: pointer;}
   
   .size{
     font-size: '20px';

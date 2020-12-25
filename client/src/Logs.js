@@ -15,8 +15,8 @@ const Logs = ({ log: { logs}, getLogs }) => {
   }
   return (
     <div className="container">
-     <ul className='collection with-header'>
-           { logs !== null ? logs.map(log => (<LogItem log={log} key={log._id}/>)) : <p className='center'>Empty Please Add.....</p>}
+     <ul className='collection with-header' >
+           { logs !== null ? logs.map(log =>(<LogItem log={log} key={log._id}/>)) : <p className='center'>Empty Please Add.....</p>}
       </ul>
     </div>
   );
